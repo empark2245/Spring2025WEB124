@@ -28,7 +28,7 @@ let myNameMultNum = myName * n1;
 document.getElementById("p5").textContent = myNameMultNum;
 
 // 8. Compare my age to the multiplication of the two numbers and display in paragraph 6
-let myAge = 18;
+let myAge = 22;
 let ageCompare = myAge > numberMult;
 document.getElementById("p6").textContent = ageCompare;
 
