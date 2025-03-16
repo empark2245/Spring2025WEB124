@@ -9,6 +9,8 @@
   <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
 
   <div class="controls">
+    <!-- Emily Parker 03-16-25: Added input controls to manipulate CSS variables dynamically -->
+    
     <label for="spacing">Spacing:</label>
     <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
 
@@ -19,19 +21,28 @@
     <input id="base" type="color" name="base" value="#ffc600">
   </div>
 
+  <!-- Emily Parker 03-16-25: Placeholder image for styling effects -->
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
-
-    /*
-      misc styles, nothing to do with CSS variables
+    /* 
+      Emily Parker 03-16-25: Base styling with scoped CSS variables
+      Adapted via JavaScript30: https://javascript30.com/
     */
 
+    /* Root CSS Variables */
+    :root {
+      --spacing: 10px;
+      --blur: 10px;
+      --base: #ffc600;
+    }
+
+    /* Miscellaneous styles, structured for readability */
     body {
       text-align: center;
       background: #193549;
       color: white;
-      font-family: 'helvetica neue', sans-serif;
+      font-family: 'Helvetica Neue', sans-serif;
       font-weight: 100;
       font-size: 50px;
     }
@@ -43,9 +54,36 @@
     input {
       width: 100px;
     }
+
+    /* 
+      Emily Parker 03-16-25: Dynamically updated styles using CSS variables
+    */
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+      transition: all 0.3s ease-in-out;
+    }
   </style>
 
   <script>
+    /* 
+      Emily Parker 03-16-25: JavaScript logic for handling CSS variable updates 
+      Adapted via JavaScript30: https://javascript30.com/
+    */
+
+    // Select all input elements
+    const inputs = document.querySelectorAll('.controls input');
+
+    // Function to handle updates when input values change
+    function handleUpdate() {
+      const suffix = this.dataset.sizing || ''; // Get px suffix if applicable
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    }
+
+    // Listen for changes on each input and apply updates
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
   </script>
 
 </body>
