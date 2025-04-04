@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Inbox Multi-Select Updated</title>
+  <link rel="icon" href="https://fav.farm/🔥" />
+  <style>
+    html {
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffc600;
+    }
+
+    .inbox {
+      max-width: 500px;
+      margin: 50px auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      transition: background 0.2s;
+    }
+
+    .item:last-child {
+      border-bottom: none;
+    }
+
+    input[type="checkbox"] {
+      margin: 20px;
+      transform: scale(1.4);
+      cursor: pointer;
+    }
+
+    input:checked + p {
+      background: #f1f1f1;
+      text-decoration: line-through;
+    }
+
+    p {
+      margin: 0;
+      padding: 20px;
+      font-size: 18px;
+      flex: 1;
+      border-left: 2px solid #ffc600;
+    }
+
+    p:hover {
+      background-color: #fff9db;
+    }
+
+    header, footer {
+      text-align: center;
+      padding: 10px;
+    }
+
+    footer {
+      font-size: 0.9rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    📥 Inbox Multi-Select Example
+    ✅ Adapted by Emily Parker 04-04-25
+    🧠 Inspired by Wes Bos - JavaScript30.com
+    🔧 Elements and attributes added:
+      - Semantic elements: <header>, <footer>, <main>
+      - Accessibility: aria-label, role attributes
+      - Icon Favicon.
+  -->
+
+  <header role="banner">
+    <h1 aria-label="Inbox multi-select example">📥 The Inbox</h1>
+  </header>
+
+  <main class="inbox" role="main" aria-label="Email selection list">
+    <div class="item">
+      <input type="checkbox" id="item1">
+      <p for="item1">This is an edited inbox layout.</p>
+    </div>
+    <div class="item">
+      <input type="checkbox" id="item2">
+      <p for="item2">Check the items</p>
+    </div>
+    <div class="item">
+      <input type="checkbox" id="item3">
+      <p for="item3">Hold down your Shift key</p>
+    </div>
+    <div class="item">
+      <input type="checkbox" id="item4">
+      <p for="item4">Check an lower item</p>
+    </div>
+    <div class="item">
+      <input type="checkbox" id="item5">
+      <p for="item5">Everything needs to be set to checked</p>
+    </div>
+    <div class="item">
+      <input type="checkbox" id="item6">
+      <p for="item6">Try to do it without any libraries!</p>
+    </div>
+    <div class="item">
+      <input type="checkbox" id="item7">
+      <p for="item7">Just regular JavaScript coding</p>
+    </div>
+    <div class="item">
+      <input type="checkbox" id="item8">
+      <p for="item8">Good Luck!</p>
+    </div>
+    <div class="item">
+      <input type="checkbox" id="item9">
+      <p for="item9">Do not forget to tweet your result!</p>
+    </div>
+  </main>
+
+  <footer role="contentinfo">
+    <p>Created by Emily Parker · Inspired by <a href="https://javascript30.com" target="_blank" rel="noopener noreferrer">JavaScript30</a></p>
+  </footer>
+
+  <script>
+    const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+    let lastChecked = null;
+
+    function handleCheck(e) {
+      let inBetween = false;
+      if (e.shiftKey && this.checked) {
+        checkboxes.forEach(checkbox => {
+          if (checkbox === this || checkbox === lastChecked) {
+            inBetween = !inBetween;
+          }
+          if (inBetween) {
+            checkbox.checked = true;
+          }
+        });
+      }
+      lastChecked = this;
+    }
+
+    checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+  </script>
+
+</body>
+</html>
