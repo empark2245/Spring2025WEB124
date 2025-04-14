@@ -1,0 +1,108 @@
+<!-- 
+  Author: Emily Parker
+  Date: April 13, 2025
+  Source: Adapted and modified from Wes Bos's "Console Tricks" tutorial (https://github.com/wesbos/javascript30)
+  Notes: Explored console methods and DOM manipulation. 
+         New: Used console.count, groupCollapsed, and console.time/fetch combo for performance testing.
+         Challenging: Understanding how groupCollapsed works with multiple objects and dynamic labels.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks Updated!</title>
+  <link rel="icon" href="https://fav.farm/✅" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #8EC5FC, #E0C3FC);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      color: #333;
+    }
+
+    p {
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 30px;
+      background: #ffffffdd;
+      color: #FF0080;
+      border-radius: 15px;
+      box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    p:hover {
+      background-color: #ffe3f1;
+      color: #c60055;
+      transform: scale(1.05);
+    }
+
+    p:active {
+      transform: scale(0.95);
+      background-color: #ffc8e0;
+    }
+  </style>
+</head>
+<body>
+
+  <p onClick="makeGreen()">× LET'S BOOGIE ×</p>
+
+  <script>
+    const dogs = [
+      { name: 'Ash', age: 3 },
+      { name: 'Kit', age: 5 }
+    ];
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#00C896';
+      p.style.fontSize = '50px';
+      p.style.backgroundColor = '#e0ffe0';
+    }
+
+    console.log('hello');
+    console.log('Hello I am a %s string!', '👻');
+    // console.log('%c I am some great text', 'font-size:50px; background:red; text-shadow: 10px 10px 0 blue');
+    console.warn('OH NO, MAN');
+    console.error('Jesus!');
+    console.info('Sharks rarely eat 1-2 people per year');
+
+    const p = document.querySelector('p');
+    console.assert(p.classList.contains('ouch'), 'That is interesting!');
+    console.log(p);
+    console.dir(p);
+
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`);
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.log(`${dog.name} is ${dog.age * 2} dog years old`);
+      console.groupEnd();
+    });
+
+    console.count('Emmy');
+    console.count('Emily');
+    console.count('Emmy');
+    console.count('Emily');
+    console.count('Emmy');
+
+    console.time('fetching data');
+    fetch('https://api.github.com/users/wesbos')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching data');
+        console.log(data);
+      });
+
+    console.table(dogs);
+  </script>
+</body>
+</html>
