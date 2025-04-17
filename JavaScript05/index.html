@@ -1,0 +1,136 @@
+<!-- 
+  Author: Emily Parker
+  Date: April 17, 2025
+  Source: Based on Wes Bos JavaScript30 Array Cardio
+  Notes: 
+    ✔️ Refreshed visual design with gradients and animations
+    ✔️ Improved UX by making output interactive
+    ✔️ Significant JS upgrades with cleaner logic and separation of concerns
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🚀 New Array Cardio Edition</title>
+  <link rel="icon" href="https://fav.farm/🚀" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fc466b, #3f5efb);
+      color: #fff;
+      margin: 0;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    em {
+      color: #ffd6e0;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      margin: 30px auto;
+      max-width: 800px;
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    button {
+      background-color: #ffffff;
+      color: #3f5efb;
+      border: none;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 12px 24px;
+      margin: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ffd6e0;
+      color: #fc466b;
+      transform: scale(1.05);
+    }
+
+    pre {
+      text-align: left;
+      padding: 20px;
+      background: #111;
+      color: #0f0;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      max-height: 300px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Array Cardio 💪 2025 Edition</h1>
+  <p><em>Updated with modern design and functional JavaScript</em></p>
+
+  <div class="card">
+    <button onclick="checkAges()">🔎 Check Out Age Conditions</button>
+    <button onclick="showComment()">🧭 Find the Comment by ID</button>
+    <button onclick="removeComment()">🗑️ Delete the Comment</button>
+    <pre id="output">👋 Click the button to see the output here!</pre>
+  </div>
+
+  <script>
+    // Sample people and comment data
+    const people = [
+      { name: 'West', year: 1988 },
+      { name: 'Kate', year: 1986 },
+      { name: 'Ian', year: 1970 },
+      { name: 'Emmy', year: 2015 }
+    ];
+
+    const comments = [
+      { text: 'I Love this!', id: 523423 },
+      { text: 'Super cool', id: 823423 },
+      { text: 'You are the goat', id: 2039842 },
+      { text: 'BBQ is my fav food', id: 123523 },
+      { text: 'This is just really nice!', id: 542328 }
+    ];
+
+    const output = document.getElementById('output');
+
+    function checkAges() {
+      const now = new Date().getFullYear();
+      const isSomeoneAdult = people.some(p => now - p.year >= 19);
+      const areAllAdults = people.every(p => now - p.year >= 19);
+      output.textContent = `👤 Is at least one person 19+? ${isSomeoneAdult}\n👥 Is everyone 19+? ${areAllAdults}`;
+    }
+
+    function showComment() {
+      const targetID = 823423;
+      const found = comments.find(comment => comment.id === targetID);
+      output.textContent = found 
+        ? `💬 Found comment:\n${JSON.stringify(found, null, 2)}`
+        : `❌ Comment with ID ${targetID} not found.`;
+    }
+
+    function removeComment() {
+      const index = comments.findIndex(comment => comment.id === 823423);
+      if (index !== -1) {
+        const updated = [...comments];
+        updated.splice(index, 1);
+        output.textContent = `🗑️ Deleted comment with ID 823423.\n\nRemaining:\n${JSON.stringify(updated, null, 2)}`;
+      } else {
+        output.textContent = `❌ Comment with ID 823423 not found.`;
+      }
+    }
+  </script>
+
+</body>
+</html>
