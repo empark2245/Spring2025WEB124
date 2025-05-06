@@ -1,1 +1,88 @@
+/* Base styles */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #ffecd2, #fcb69f);
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
 
+main {
+  max-width: 600px;
+  margin: auto;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #ff6f61;
+}
+
+label, input, button {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+}
+
+button {
+  background-color: #00b894;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #019875;
+}
+
+.results p {
+  background-color: #ffeaa7;
+  border-left: 8px solid #fd79a8;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  main {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  label, input, button {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  button {
+    padding: 10px;
+  }
+
+  .results p {
+    font-size: 0.9rem;
+  }
+}
